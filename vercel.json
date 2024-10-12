@@ -1,23 +1,33 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/users",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/submit",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.js"
-    }
-  ]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/users",
+        "dest": "/index.js",
+        "headers": {
+          "Cache-Control": "s-maxage=1, stale-while-revalidate"
+        }
+      },
+      {
+        "src": "/submit",
+        "dest": "/index.js",
+        "headers": {
+          "Cache-Control": "s-maxage=1, stale-while-revalidate"
+        }
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.js",
+        "headers": {
+          "Cache-Control": "s-maxage=1, stale-while-revalidate"
+        }
+      }
+    ]
+  }
+  
